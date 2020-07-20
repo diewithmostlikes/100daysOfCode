@@ -78,6 +78,11 @@ class Fish(val friendly: Boolean, volumeNeeded: Int ) { // primary constructor
         println("Second init block working  ")
     }
     
+    // Note if we are using any property inside init block then property need to be come before the init block
+    // Other wise editor or if you are using intellij will tell u too initailise the property before using it
+    // And if you run it then it will throw an error "the variable must be initailised. 
+   
+    
     // functions are the same as they are declared outside the class 
     fun swim() { // member function
         
