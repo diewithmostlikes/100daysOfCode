@@ -100,3 +100,20 @@ class Fish(val friendly: Boolean, volumeNeeded: Int ) { // primary constructor
         """.trimIndent()
     }
 }
+
+// if you want your primary constructor to be public.
+// we can use private or non public visibility modifier before it but then we have to use or write  constructor keyword to declare the primary constructor.
+// Also if we have annotation we still have to use or write the constructor keyword.
+// eg.
+
+class BookOne private constructor(val totalPages: Int){
+    
+}
+
+// if you donat have any visibility modifiers and annotations then we can omit the constructor keyword.
+class BookTwo(val totalPages: Int ) {
+    
+}
+
+
+
