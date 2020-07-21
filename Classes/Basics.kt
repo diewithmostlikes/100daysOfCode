@@ -1,6 +1,6 @@
 import kotlin.properties.Delegates
 
-class SampleClass //  Empty Class
+class Food //  Empty Class
 
 class Fish(val friendly: Boolean, volumeNeeded: Int ) { // primary constructor
 
@@ -34,7 +34,7 @@ class Fish(val friendly: Boolean, volumeNeeded: Int ) { // primary constructor
      */
 
     // Example
-    lateinit var propFour: SampleClass // we can initialise this property anytime we want.
+    lateinit var propFour: Food // we can initialise this property anytime we want.
 
     /**
      * Note that if you access the properties declared with lateinit
