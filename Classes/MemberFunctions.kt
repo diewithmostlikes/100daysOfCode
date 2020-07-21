@@ -20,7 +20,7 @@ class Aliuman(human: Person, alien: Alien) {
         return """
             I am ${this.name},
             I am the fusion of human and alien .
-        """.trimMargin()
+        """.trimIndent()
     }
 }
 
