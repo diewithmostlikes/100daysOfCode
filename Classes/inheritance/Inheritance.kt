@@ -1,4 +1,4 @@
-// so today i am learning inheritance
+package inheritance// so today i am learning inheritance
 
 // lets create a class softwareProgrammer
 
@@ -56,12 +56,12 @@ class WebDeveloper(favLanguage: String, experience: Int):
     // now here we can write some web developer specific  properties and methods
 
     fun meetWithClient(client: Client) {
-        println("Meeting with Client ${client.name}")
+        println("Meeting with inheritance.Client ${client.name}")
     }
 
     fun startCode(language: String  = "", timeForCode: Int = 2) {
 
-        if (language.isBlank()) { code(time = timeForCode)  } else code(language, timeForCode)  // calling higher class ( programmer ) or super class ( Programmer ) method code()
+        if (language.isBlank()) { code(time = timeForCode)  } else code(language, timeForCode)  // calling higher class ( programmer ) or super class ( inheritance.Programmer ) method code()
 
 
     }
@@ -97,7 +97,7 @@ class WebDeveloper(favLanguage: String, experience: Int):
 
 }
 
-// creating empty class Client
+// creating empty class inheritance.Client
 data class Client(val name:String) // sample data class to hold the name of the client
 
 
