@@ -79,10 +79,17 @@ class WebDeveloper(favLanguage: String, experience: Int):
     fun startCodeTwo(language: String, timeForCode: Int) {
         super.code(language, timeForCode) // accessing method of parent class by using supper keyword
 
-        // we must have to pass arguments to the method which contains default arguments if we are using super to access parent methods
+        // we must have to pass arguments to the method which contains default arguments if we are using super to access parent class or base class methods
         // Error-: super.code() // we must pass arguments to code even if it contains default parameters or arguments or not.
         // super calls with default arguments is not allowed
     }
+
+    inner class Mind {
+        fun learn(languageName: String) {
+            super@WebDeveloper.learnNewLanguage(languageName) // accessing outer class's  parent or base class method using super.
+        }
+    }
+
 
     // we can also override the methods declared in the parent class
     // for doing so we need to write 'override' modifier before the 'fun'
@@ -93,16 +100,10 @@ class WebDeveloper(favLanguage: String, experience: Int):
     }
 
 
-
-
 }
 
 // creating empty class inheritance.Client
 data class Client(val name:String) // sample data class to hold the name of the client
-
-
-
-
 
 
 
