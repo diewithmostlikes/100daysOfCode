@@ -29,7 +29,7 @@ open class Person(val name: String,  age: Int,  height:Int, weight: Int): Human(
     fun study() { println("studying.........") }
 }
 
-// Multi-level or multiple level inheritance
+// Multi-level inheritance
 // but if i write one more class bellow and inherit Person class which is already inheriting Human class
 // then it will become multi-level inheritance.
 // for eg lets make it multi level inheritance by inheriting Person class
@@ -52,7 +52,7 @@ class Child(name: String, age: Int, height: Int, weight: Int):
 
 }
 
-// we call multiple-level or multi-level inheritance for this type of inheritance
+// we call multi-level inheritance for this type of inheritance
 // where a Class inherits a Class which is also inheriting a class.
 
 fun main(){
