@@ -1,4 +1,4 @@
-package Interfaces
+package interfaces
 
 // empty class for illustration
 class OperatingSystem(val name: String)
