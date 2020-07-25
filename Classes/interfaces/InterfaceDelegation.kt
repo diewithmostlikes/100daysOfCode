@@ -103,7 +103,6 @@ fun main(){
 
 }
 
-
 fun printOs(phone: OsVersion) {
     println(phone.osVersion)
 }
