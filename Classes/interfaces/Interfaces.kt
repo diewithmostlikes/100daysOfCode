@@ -39,7 +39,7 @@ class LargeRocket: Rocket {
             Thread.sleep(1_000)
         }
         println("Ignition started..")
-        println("Rocket is going up stright....")
+        println("Rocket is going up straight....")
         println("Rocket has successfully launched..  ")
     }
 }
@@ -65,6 +65,35 @@ class ImplementBoth: InterOne, Abs1()
 // or a class have only one supper type
 // but we can  implement as many interface we want
 
+// lets check if two interface have a same function or method with same name san same signature
+interface A {
+    fun testMethod() {
+        println("default Implementation")
+    }
+}
+
+interface B {
+    fun testMethod(){
+        println("default Implementation")
+    }
+}
+
+// lets implement both A and B interfaces
+// above interfaces have default implementation for there single methods so there is nothing to override in implementing class
+// But compiler will compiler will complain because both interfaces has same name and signature method  and have their own Default implementation
+// so in this case we must have to override the method
+// and to preserve that implementation we can use super keyword and specify the implementation we want to use
+class ImplementTest: A, B {
+
+    override fun testMethod() {
+        // Inn this case im using both default implementations to preserve default implementation of A and B
+        super<A>.testMethod()
+        super<B>.testMethod()
+        println("i have both default implementation")
+    }
+}
+
+
 
 fun main() {
 
@@ -75,5 +104,8 @@ fun main() {
     // we can hold a object of class that implements a interface in Interface reference or type
     val factOne: Rocket = LargeRocket()
     // but you can only access or do things that are defined in the interface only with this reference
+
+    val obj: ImplementTest = ImplementTest()
+    obj.testMethod()
 
 }

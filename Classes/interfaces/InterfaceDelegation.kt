@@ -101,8 +101,6 @@ fun main(){
     println("-----------------------------")
     println(anotherAndroid.aboutPhone())
 
-
-
 }
 
 
