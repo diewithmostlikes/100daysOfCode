@@ -84,6 +84,48 @@ class Android(phoneName: PhoneName, version: OsVersion):
     }
 }
 
+// One more thing in interface delegation
+interface TestA {
+    val mName: String
+    fun printName()
+
+}
+
+// concrete class that implements TestA Interface
+class ImplTestA(name: String): TestA{
+    override val mName: String = name
+    override fun printName() {
+        println("Hello, I'm $mName")
+    }
+}
+
+// interface delegation
+
+class DelegationTest: TestA by ImplTestA("Java"){
+
+    // lets change or override the mName property
+    override val mName: String = "kotlin"
+
+}
+
+// now lets try to run the printName() method and see what happens
+
+fun printNameTest() {
+    val obj: DelegationTest = DelegationTest()
+
+    // lets print mName which we have overridden
+    println(obj.mName)
+
+    // Now lets call the function or method printName() which we have'nt modified
+    obj.printName() // this method will still println Hello, I'm java
+    //but why
+
+    // because the member that are overridden (mName) in this way don not get called by the members(printName) of delegated objects
+    // which can only access its own implementation of interface members.
+
+
+
+}
 
 
 
@@ -100,6 +142,10 @@ fun main(){
     println(myAndroid.aboutPhone())
     println("-----------------------------")
     println(anotherAndroid.aboutPhone())
+
+    // Delegation test (last example before main function)
+    printNameTest()
+
 
 }
 
