@@ -37,7 +37,6 @@ object GooglePixel: PhoneName { override val phoneName = "Google Pixel" }
 object Iphone11: PhoneName { override val phoneName = " IPhone 11 "}
 
 // Some android Os versions
-object AndroidX: OsVersion { override val osVersion: String = "Android X"}
 object AndroidPie: OsVersion { override val osVersion: String = " Android pie"}
 object AndroidOreo: OsVersion { override val osVersion: String = "Android Oreo"}
 
@@ -133,7 +132,7 @@ fun main(){
 
     // we can pass GooglePixel as PhoneName because it is implementing PhoneName interface
     // also we can pass Version class object because it is implementing  OsVersion interface
-    val myAndroid: Android  = Android(GooglePixel, AndroidX)
+    val myAndroid: Android  = Android(GooglePixel, AndroidPie)
 
     // and we can also create and pass object of Phone because it is implementing PhoneName Interface
     // also can pass object of Version because it is implementing Os version
