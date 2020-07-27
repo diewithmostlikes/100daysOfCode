@@ -178,6 +178,9 @@ fun main() {
     // Note ordinal also starts from zero
     for (day in Days.values()) println("Day ${day.ordinal}: $day")
 
+    if (isWeekEnd(Days.SUNDAY)) println ("Today is Weekend")
+    else println("Not Weekend today")
+
 
 }
 
