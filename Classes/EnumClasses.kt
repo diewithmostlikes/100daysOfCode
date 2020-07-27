@@ -1,3 +1,5 @@
+import java.util.*
+
 // so we have seen classes that needs only single instances to be created and many instance of those class seems unnecessary
 // because all they do same things or their purpose will be same no matter how many instance we create of those type of class
 
@@ -177,10 +179,26 @@ fun main() {
     for (day in Days.values()) println("Day ${day.ordinal}: $day")
 
 
+}
+
+fun isWeekEnd(day: Days): Boolean {
+
+    // using enum with when..
+    return when (day) {
+        Days.MONDAY -> false
+        Days.TUESDAY -> false
+        Days.WEDNESDAY -> false
+        Days.THURSDAY -> false
+        Days.FRIDAY -> false
+        Days.SATURDAY -> true
+        Days.SUNDAY -> true
+
+        // note compiler is not complaining about else branch though we are using when as expression
+        // because we have used all the possible cases and when knows that....
+    }
 
 
 }
-
 
 
 
