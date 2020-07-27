@@ -64,8 +64,34 @@ enum class Color(val hex: Int){
     }
 
 }
-// enum class can also implement interface
 
+// Enum Constants can have their anonymous classes
+enum class EnumClass{
+    CONSTANTA{ // Anonymous Class
+        override fun aMethod(){
+            println(this.name)
+        }
+    },
+    CONSTANTB{ // Anonymous Class
+        override fun aMethod(){
+            println(this.name)
+        }
+    },
+    CONSTANTC{ // Anonymous Class
+        override fun aMethod() {
+            println(this.name)
+        }
+    };
+
+
+    // I have marked this function or method as abstract and thus i have to implement it in every instance or constant of enum
+    abstract fun  aMethod()
+
+}
+
+
+
+// enum class can also implement interface
 // creating interface
 interface WeekEnd {
     fun isWeekEnd(): Boolean
@@ -89,6 +115,9 @@ enum class Days: WeekEnd{
     override  fun isWeekEnd(): Boolean = false
 
 }
+
+
+
 
 
 
