@@ -63,6 +63,16 @@ fun main() {
 
     // That's it from Pair now... :-)
 
+    // one more thing like pair type that can have two elements
+    // kotlin also has triple type that can have three elements
+
+    val userInfo:  Triple<String, Int, Int> = Triple("alex", 21, 10001)
+
+    // also a data class so we can use destructuring declaration
+    val (username, userAge, userId) = userInfo
+
+
+
 }
 
 // As we know we cant return two values from a function or method. (in python we can return more than one value from function)
