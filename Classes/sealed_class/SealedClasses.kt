@@ -78,28 +78,38 @@ fun osDetails(os: OsWithVersions): String =
             // and as when knows how many subclasses a sealed class have we can use our ide help to write all the cases in when block
         }
 
+
 // now just like enum we can have properties and methods in sealed class
-// we can declare some members as abstract soo every subclass of enum class has to implement them
-sealed class A {
+// we can also declare members as abstract soo every subclass of sealed class has to implement them
+
+// before kotlin 1.1 we have to write sub classes of sealed class inside the sealed class
+sealed class A(val prop: String) {
+    // declaring subclass of sealed class inside sealed class block.
+    class ImplA(prop: String) : A(prop)
+}
+
+// After kotlin 1.1 we can declare subclass of sealed class outside the sealed class block
+sealed class B {
    abstract fun abstractMethod()
     fun methodOne() {
         println(" simple method")
     }
 }
 
-class ImplA(val prop: Int) : A() {
+// declaring subclass of sealed class outside the sealed class block
+class ImplB(val prop: Int) : B() { // subclasses of sealed class can access the private constructors of sealed class
     override fun abstractMethod() {
         println("Implemented")
     }
 }
 
 
+
+
 fun main() {
     // lets create instance of Android  os
     val androidQ: Android = Android("Q")
     println(osDetails(androidQ))
-
-
 
 
 }
