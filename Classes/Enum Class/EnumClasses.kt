@@ -1,11 +1,11 @@
-import java.util.*
+package `Enum Class`
 
 // so we have seen classes that needs only single instances to be created and many instance of those class seems unnecessary
 // because all they do same things or their purpose will be same no matter how many instance we create of those type of class
 
 // for rg
 
-class RedColor { val color: String = "Red" }
+class RedColor { val color: String = "`Enum Class`.Red" }
 
 // so this class have a property color red and no matter how many instance of this class we are going to create
 // is going to do the same thing.
@@ -16,10 +16,10 @@ class RedColor { val color: String = "Red" }
 // eg
 
 object Red {
-    val color: String = "Red"
+    val color: String = "`Enum Class`.Red"
 }
 
-// now it makes more sense to have only single instance of the Red Class..
+// now it makes more sense to have only single instance of the `Enum Class`.Red Class..
 // Note constructor are not allowed in singleton class because if you want to have a constructor that means your class
 // take different values and every instance is going to be different. it means you should probably consider using simple class
 
@@ -32,7 +32,7 @@ object Red {
  * And thats where enum classes come in.
  */
 
-// like we just want 7 main color instances
+// like we just want 7 `Enum Class`.main color instances
 // we can do this two way create singleton classes for every 7 color
 // or we can use enums
 // okay enough talk lets code....
@@ -47,7 +47,7 @@ enum class Color(val hex: Int){
 
     // instances can also have methods.
     fun about(){
-        println("Im $this and im  from Color enum class ")
+        println("Im $this and im  from `Enum Class`.Color enum class ")
     }
 
     fun getHexValue() = this.hex
@@ -100,7 +100,7 @@ interface WeekEnd {
 }
 
 // creating enum class
-enum class Days: WeekEnd{
+enum class Days: WeekEnd {
     MONDAY,
     TUESDAY,
     WEDNESDAY,
@@ -140,11 +140,11 @@ fun main() {
     println(colorArray.toList())
 
     // we can also search for  a instance in enum class
-    val greenColor: Color  = Color.valueOf("GREEN")
+    val greenColor: Color = Color.valueOf("GREEN")
     println(greenColor.name)
 
     // what if we search for the instance that does'nt exists
-    //ERROR -: val blue: Color = Color.valueOf("BLUE")
+    //ERROR -: val blue: `Enum Class`.Color = `Enum Class`.Color.valueOf("BLUE")
     // Compiler will throw you an IllegalArgumentException if the instance that you searched for doesn't exits
 
     // lets use class method randomColor
@@ -155,14 +155,14 @@ fun main() {
     val yellowHex: Int = Color.YELLOW.hex
     println("Hex value of yellow: $yellowHex")
 
-   // Accessing about() method of the instance of Color enum class
+   // Accessing about() method of the instance of `Enum Class`.Color enum class
     Color.ORANGE.about()
-    // Error Color.about() because the about is method of every instance or constant of the enum class not the class method
+    // Error `Enum Class`.Color.about() because the about is method of every instance or constant of the enum class not the class method
 
 
-    // Now lets check our enum class Day that is implementing WeekEnd Interface
+    // Now lets check our enum class Day that is implementing `Enum Class`.WeekEnd Interface
 
-    // Accessing isWeekEnd() method of the instances of enum class
+    // Accessing `Enum Class`.isWeekEnd() method of the instances of enum class
     println("""
         Sunday: ${if(Days.SUNDAY.isWeekEnd()) "Holiday" else "Not Holiday "}
         Saturday: ${if (Days.SATURDAY.isWeekEnd()) "Holiday" else "Not Holiday "}
