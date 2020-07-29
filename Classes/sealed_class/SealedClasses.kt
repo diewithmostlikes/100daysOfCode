@@ -1,8 +1,5 @@
 package sealed_class
 
-import sealed_class.Os.WINDOWS
-
-
 // In enum classes enum constant exists as an single instances
 enum class Os{
     WINDOWS,
