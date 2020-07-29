@@ -1,4 +1,4 @@
-package `Enum Class`
+package enum_class
 
 // so we have seen classes that needs only single instances to be created and many instance of those class seems unnecessary
 // because all they do same things or their purpose will be same no matter how many instance we create of those type of class
