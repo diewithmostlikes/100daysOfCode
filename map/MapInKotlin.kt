@@ -113,9 +113,57 @@ fun main() {
     println(emptyMap)
     border()
 
+    // Inserting in Map
+    val studentInfo: MutableMap<Int, String> = mutableMapOf(1 to "Alex")
+    // we can add pair by using put() method or use shorthand "[]"
+    studentInfo.put(2, "David")
 
+    // by using shorthand "[]"
+    studentInfo[3] = "Sam"
 
+    // but  be care full if there is the key already present in the map you are gonna reassign the value of that key.
+    // just make sure the key is not present there already.
+    println(studentInfo.toString())
+    border()
 
+    // we can also add group of pairs by using put all
+    val pairList: List<Pair<Int, String>> = listOf(4 to "john", 5 to "koltin", 6 to "google", 7 to "john") // well i run out of the names thus used these here
+    studentInfo.putAll(pairList)
+    println(studentInfo.toString())
+    border()
+
+    // and we can use plus assign operator
+    studentInfo += 8 to "jet Brains"
+    println(studentInfo.toString())
+    border()
+
+    // and last but not least deletion  or removing entries from map
+
+    // we can use remove() method
+    studentInfo.remove(1) // we can remove key value pair by using a specific key
+    println(studentInfo.toString())
+    border()
+
+    studentInfo. remove(2, "David") // we can remove a particular pair. (if one of them key or value doesn't match its not going to remove anything)
+    println(studentInfo.toString())
+    border()
+
+    // we can remove pair from map by using keys and values remove Method
+    studentInfo.keys.remove(3)
+    studentInfo.values.remove("john") // will only remove the value which first occurs or removes the first entry with the given value.
+    println(studentInfo.toString())
+    border()
+
+    // and we can also use minus assign operator
+    studentInfo -= 6 // 6 is the key here to get removed
+    studentInfo -= 7
+    studentInfo -= 10 //removes nothing because there is no matching key
+    println(studentInfo)
+    border()
+
+    // done with maps for now there is one more important topic with the maps that is using filter with map
+    // but im not going to that now maybe two or three day latter.. huff that's it for now.
+    // todo filter with maps
 
 
 
