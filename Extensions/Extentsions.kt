@@ -122,7 +122,7 @@ class B{
     val prop: A = A()
 
     fun A.extensionMethod() { // accessible only on instances of A inside the class B
-        println("extention function on A but also the member of B")
+        println("extension function on A but also the member of B")
     }
 
     fun callExtensionMethodOfA() { prop.extensionMethod() } // Created this method so we can access it outside the class
