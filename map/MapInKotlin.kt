@@ -161,11 +161,22 @@ fun main() {
     println(studentInfo)
     border()
 
-    // done with maps for now there is one more important topic with the maps that is using filter with map
-    // but im not going to that now maybe two or three day latter.. huff that's it for now.
-    // todo filter with maps
+    // so im back lets practice using filter() function on map
+    // so filter on maps takes predicate with the pair argument making it possible to filter with key and value both
 
+    val music = mapOf("Old Town Road" to "Lil Nas X", "Bailando" to "Erique", "Titanium" to "David Guetta" )
+    val filteredMap = music.filter{ (key, value) -> key.startsWith('O') && value.endsWith('X') } // returns a new filtered Map
+    println(filteredMap.toString())
+    border()
 
+    // we cn also filter map only using keys or only using values by using filterKeys() and filterValues() functions
+    val filteredMapWithOnlyKeys = music.filterKeys{ it.startsWith('T')}
+    println(filteredMapWithOnlyKeys)
+    border()
+
+    val filteredMapWithOnlyValues = music.filterValues{it.startsWith('E')}
+    println(filteredMapWithOnlyValues)
+    border()
 
 }
 
