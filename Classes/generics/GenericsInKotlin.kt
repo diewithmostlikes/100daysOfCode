@@ -80,7 +80,6 @@ fun main() {
     // Error: - val otherTypePassTest = LiquidContainer("Im a string and im not type and subtype of Liquid")
     // Error -val nullPassTest = LiquidContainer(null)
 
-
 }
 
 // Note if we try to bond a class which has no Subclasses of it
