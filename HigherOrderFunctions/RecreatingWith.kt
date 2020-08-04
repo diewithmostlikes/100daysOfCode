@@ -20,6 +20,10 @@ fun <T> T.myWithThree(block: T.()-> Unit): T { // higher order function
     block() // object will be modified
     return this // returning the modified/unmodified object
 }
+// returning from a higher order function.
+fun funny() { println("This is funny") }
+fun returnMeFunny(): () -> Unit { return::funny }
+
 
 
 // todo Recreate "With" that don't modify the Object
@@ -36,7 +40,7 @@ fun main() {
     }
 
     println("After: $listOne") // modified list
-
+    
 
     println("======================ListTwo=========================")
     // object will be modified
@@ -63,5 +67,8 @@ fun main() {
 
     println("After: $listThree") // modified list
 
+    // getting returned function from higher order function
+    val funnyOne = returnMeFunny()
+    funnyOne()
 
 }
