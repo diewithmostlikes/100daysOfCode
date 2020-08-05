@@ -78,12 +78,46 @@ fun simpleFuncFive() {
     )
 }
 
+// sometimes we want the type of parameter passed in generic function we can use reified modifier
+// but tto do so function must be inline
+inline fun <reified T>printType(Param: T) {
+   println(T::class)
+}
+
+// just like inline function the code is copied to the calling place
+// we can also declare properties to inline and their accessor methods(get() and set() (getter and setter)) will pe copied to the calling place
+
+// but remember inline can only be used with the properties that don't have backing field
+// Error inline var inlineProp: Int = 10
+
+// inline with properties that don't have backing fields
+inline val inlinePropOne: String
+    get() = "this is inline property"
+
+inline var inlinePropTwo: String
+    get() = "this is inline property two"
+    set(value)  {value} // can't do field = value because then it will have backing field and which is not allowed with inline properties
+
+// we can go more flexible and can use inline with getter or setter only
+
+var inlinePropThree: String
+    inline get() = "only getter is inline"
+    set(value){println("Setter is not inlined")}
+
+var inlinePropFour: String
+    get() = "Getter is not  inlined"
+    inline set(value) {println("only setter is inlined")}
+
+
 fun main(){
     simpleFuncOne()
     simpleFuncTwo()
     simpleFuncThree()
     simpleFuncFour()
     simpleFuncFive()
+
+    // type of the parameter passed in generic inline function
+    printType("this is string")
 
     higherOrderFunc {
         println("Higher order function is not inline and thus cant use return")
@@ -94,6 +128,11 @@ fun main(){
         println("Higher order function is inline and thus can use return ")
         return // return allowed !
     }
+
+    println(inlinePropOne)
+    println(inlinePropTwo)
+    println(inlinePropThree)
+    println(inlinePropFour)
 
     println("this will not get printed") // because the inlineHigherOrderFunc lambda expression above has non local return
                                          // which will return or exit the main() function
