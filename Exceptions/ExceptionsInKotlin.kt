@@ -78,7 +78,7 @@ fun moreCatchBlocks() {
     if (input != null) {
         val name: String?
 
-        val pattern  = Regex("^[A-Za-z\\s]+\$") // suing regex to check input only contains alphabets and white spaces
+        val pattern  = Regex("^[A-Za-z\\s]+\$") // using regex to check input only contains alphabets and white spaces
         try {
             name = input
             if(!pattern.containsMatchIn(name)) throw WrongNameException() // if name contains symbols and numbers
@@ -94,6 +94,7 @@ fun moreCatchBlocks() {
     }
 
 }
+// todo optional final block
 
 fun main() {
 
