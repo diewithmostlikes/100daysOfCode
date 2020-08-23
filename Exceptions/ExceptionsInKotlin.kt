@@ -95,7 +95,7 @@ fun moreCatchBlocks() {
 
 }
 // todo optional final block
-//todo rest today and final block will be done tomorrow
+// todo rest today and final block will be done tomorrow and more related with exception handling
 
 
 fun main() {
