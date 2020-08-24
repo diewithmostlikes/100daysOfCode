@@ -178,11 +178,33 @@ fun returningFromFinally() {
 
 }
 
+// lets use try expression return value in the above age example
+fun getCorrectAgeTwo(): Int {
+    val input = readLine() ?: return -1
+    var age: Int = -1
+
+    val occurred: Boolean  = try {
+        input.toInt()
+        false
+    }
+    catch(e: NumberFormatException) {
+        println("Only numbers are allowed ")
+        true
+    }
+
+    if (!occurred){
+        val ageForCheck = input.toInt()
+        if (ageForCheck in 18..60) age = ageForCheck
+    }
+
+    return age
+}
+
 
 
 fun main() {
 
-    returningFromFinally()
+
 
 
 }
