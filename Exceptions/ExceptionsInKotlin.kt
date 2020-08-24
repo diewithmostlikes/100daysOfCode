@@ -66,8 +66,8 @@ fun handlingCustomException() {
 }
 
 // handling multiple Exceptions
-class ToLongName() : Exception("Name can be only 20 Character Long")
-class WrongNameException(): Exception("Name does'nt Contain Symbols and Numbers")
+class ToLongName: Exception("Name can be only 20 Character Long")
+class WrongNameException: Exception("Name does'nt Contain Symbols and Numbers")
 
 fun moreCatchBlocks() {
     // we can have more than one catch blocks to handle multiple Exceptions
@@ -75,8 +75,8 @@ fun moreCatchBlocks() {
     println("Enter your name: ")
     val input = readLine()
 
+    val name: String
     if (input != null) {
-        val name: String?
 
         val pattern  = Regex("^[A-Za-z\\s]+\$") // using regex to check input only contains alphabets and white spaces
         try {
@@ -94,12 +94,95 @@ fun moreCatchBlocks() {
     }
 
 }
-// todo optional final block
-// todo rest today and final block will be done tomorrow and more related with exception handling
+
+// we can also have optional finally block
+fun finallyBlock (){
+    try {
+        throw Exception("Test Exception")
+    }
+    catch(e : MyException) {
+        println("Exception occurred") // runs when a exception defined in catch block occurs
+
+    }
+    finally {
+        // finally block always executed
+        println("hello im finally block ") // runs no matter exception occurs or not
+    }
+}
+
+
+// lets use finally block
+fun getCorrectAge(): Int{
+
+    println("Enter your age 18 to 60: ")
+    val input: String? = readLine()
+
+    var age: Int = -1 // if the age is not correct or an Exception occurs inside the try block bellow then -1 will be returned
+    var occurred: Boolean = false
+    if (input != null) {
+        try {
+            input.toInt()
+        }
+        catch(e: NumberFormatException) {
+            occurred = true
+            println("Numbers Are allowed only !")
+        }
+        finally {
+            if (!occurred) { // when exception don't occurs means input is in number format and we can check further...
+                val ageForCheck: Int  = input.toInt() // this wo2nt give error because we have already checked it in try block
+                if(ageForCheck in 18..60) age = ageForCheck // checking age in specific range..
+            }
+        }
+    }
+
+    return  age
+}
+
+
+// can we use more then one finally block ?
+fun moreFinallyBlocks() {
+    try {
+        throw Exception("Test Exception !")
+    }
+    catch(e : Exception){
+        println("handling....")
+    }
+    finally { // even one final block is also optional.
+        println("finally block 1")
+    }
+    // Error: finally { println("finally block 1") }
+    // so nope ! we can't have more then one finally block and it serves no purpose to have more finally blocks
+
+}
+
+// try is an expression so it may have return value
+// lets try to return some values from try expression
+fun returningFromTry() {
+    val input: String = readLine() ?: return // if the input is null we will end the function
+
+    // return value from try exception is either last expression of try block or catch block
+    val getValue: Int  = try { input.toInt() } catch (e : Exception) { -1 }
+
+    // what happens here is ->
+    // if there no exception occurs in code inside the try block then last expression of try block will be returned as return value
+    // if some Exception occurs or thrown by the code inside the tyr block then last Expression inside catch block will be returned as return value
+
+}
+
+ // what if we try to return from finally also.
+fun returningFromFinally() {
+    val input = readLine() ?: return
+
+    val getValue: Int = try {input.toInt()}  catch(e :NumberFormatException) { -1} finally { 0 }
+    // finally block does not effect the return value and in the above example last expression inside final block gets unused
+
+}
+
 
 
 fun main() {
 
+    returningFromFinally()
 
 
 }
