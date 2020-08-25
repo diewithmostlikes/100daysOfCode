@@ -1,8 +1,8 @@
 /** Exception classes in kotlin are descendants of Throwable */
-// todo test it -: val storeTest: Nothing = throw Exception("this is a test") // yup we can have reference of the exception and use this reference to throw an exception
 
 // Throwing an Exception
 class TestClass // empty class for test
+
 fun throwingException() {
     // can throw an exception by using throw
     throw Exception("Something went Wrong !") // throwing an Exception Class Object and which Extends Throwable
@@ -17,11 +17,10 @@ fun tryAndCatch() {
     val input: String? = readLine() // getting input from user
 
     // Deal with exception by using try and catch block or expression to handle the exception
-    val number : Int?
+    val number: Int?
     try {
         number = input?.toInt()
-    }
-    catch (e: Exception){
+    } catch (e: Exception) {
         // this code will execute if something went wrong in the try block
         println("Something went wrong !")
         // or in other words we will execute the code inside the catch block if our specified exception occurs
@@ -34,13 +33,12 @@ fun tryAndCatchTwo() {
     // lets be more specific with exception that occurs in above example
 
     println("Enter Your Age: ")
-    val input  = readLine()
+    val input = readLine()
 
     val age: Int?
     try {
-        age  = input?.toInt()
-    }
-    catch (e: NumberFormatException) { //  catch block will only catch NumberFormatException that occurs if the string is not valid representation of numbers
+        age = input?.toInt()
+    } catch (e: NumberFormatException) { //  catch block will only catch NumberFormatException that occurs if the string is not valid representation of numbers
         val className = input!!::class.simpleName
         println("Wrong Input Type: $className, You have to enter Integer")
     }
@@ -50,24 +48,25 @@ fun tryAndCatchTwo() {
 // making our custom Exception
 // To Do so we need to inherit or extend from Throwable class
 // we can use multilevel inheritance to inherit indirectly from Throwable Class
-class MyException(msg: String): Exception(msg)
+class MyException(msg: String) : Exception(msg)
 
 // throwing our custom exception
-fun throwCustomException() { throw MyException("This is my Custom Exception") }
+fun throwCustomException() {
+    throw MyException("This is my Custom Exception")
+}
 
 // Handling custom Exception with catch blocks
 fun handlingCustomException() {
     try {
-        throw MyException ("This is my custom Exception") // Manually throwing custom Exception
-    }
-    catch (e: MyException) {
+        throw MyException("This is my custom Exception") // Manually throwing custom Exception
+    } catch (e: MyException) {
         println("Voila now we can handle our own custom Exception")
     }
 }
 
 // handling multiple Exceptions
-class ToLongName: Exception("Name can be only 20 Character Long")
-class WrongNameException: Exception("Name does'nt Contain Symbols and Numbers")
+class ToLongName : Exception("Name can be only 20 Character Long")
+class WrongNameException : Exception("Name does'nt Contain Symbols and Numbers")
 
 fun moreCatchBlocks() {
     // we can have more than one catch blocks to handle multiple Exceptions
@@ -78,17 +77,16 @@ fun moreCatchBlocks() {
     val name: String
     if (input != null) {
 
-        val pattern  = Regex("^[A-Za-z\\s]+\$") // using regex to check input only contains alphabets and white spaces
+        val pattern = Regex("^[A-Za-z\\s]+\$") // using regex to check input only contains alphabets and white spaces
         try {
             name = input
-            if(!pattern.containsMatchIn(name)) throw WrongNameException() // if name contains symbols and numbers
+            if (!pattern.containsMatchIn(name)) throw WrongNameException() // if name contains symbols and numbers
             if (name.length > 20) throw ToLongName() // if the name is 20 characters long
         }
         // we can many catch blocks to handle multiple exceptions
-        catch (longName : ToLongName) { // catch block also takes reference of Throwable class or its derived classes
+        catch (longName: ToLongName) { // catch block also takes reference of Throwable class or its derived classes
             println(longName.message) // we can use 'longName' reference to get the Exception message
-        }
-        catch (wrongName: WrongNameException) {
+        } catch (wrongName: WrongNameException) {
             println(wrongName.message)
         }
     }
@@ -96,15 +94,13 @@ fun moreCatchBlocks() {
 }
 
 // we can also have optional finally block
-fun finallyBlock (){
+fun finallyBlock() {
     try {
         throw Exception("Test Exception")
-    }
-    catch(e : MyException) {
+    } catch (e: MyException) {
         println("Exception occurred") // runs when a exception defined in catch block occurs
 
-    }
-    finally {
+    } finally {
         // finally block always executed
         println("hello im finally block ") // runs no matter exception occurs or not
     }
@@ -112,7 +108,7 @@ fun finallyBlock (){
 
 
 // lets use finally block
-fun getCorrectAge(): Int{
+fun getCorrectAge(): Int {
 
     println("Enter your age 18 to 60: ")
     val input: String? = readLine()
@@ -122,20 +118,18 @@ fun getCorrectAge(): Int{
     if (input != null) {
         try {
             input.toInt()
-        }
-        catch(e: NumberFormatException) {
+        } catch (e: NumberFormatException) {
             occurred = true
             println("Numbers Are allowed only !")
-        }
-        finally {
+        } finally {
             if (!occurred) { // when exception don't occurs means input is in number format and we can check further...
-                val ageForCheck: Int  = input.toInt() // this wo2nt give error because we have already checked it in try block
-                if(ageForCheck in 18..60) age = ageForCheck // checking age in specific range..
+                val ageForCheck: Int = input.toInt() // this wo2nt give error because we have already checked it in try block
+                if (ageForCheck in 18..60) age = ageForCheck // checking age in specific range..
             }
         }
     }
 
-    return  age
+    return age
 }
 
 
@@ -143,17 +137,16 @@ fun getCorrectAge(): Int{
 fun moreFinallyBlocks() {
     try {
         throw Exception("Test Exception !")
-    }
-    catch(e : Exception){
+    } catch (e: Exception) {
         println("handling....")
-    }
-    finally { // even one final block is also optional.
+    } finally { // even one final block is also optional.
         println("finally block 1")
     }
     // Error: finally { println("finally block 1") }
     // so nope ! we can't have more then one finally block and it serves no purpose to have more finally blocks
 
 }
+// finally is optional but at lease one catch block and one finally block should be present
 
 // try is an expression so it may have return value
 // lets try to return some values from try expression
@@ -161,7 +154,11 @@ fun returningFromTry() {
     val input: String = readLine() ?: return // if the input is null we will end the function
 
     // return value from try exception is either last expression of try block or catch block
-    val getValue: Int  = try { input.toInt() } catch (e : Exception) { -1 }
+    val getValue: Int = try {
+        input.toInt()
+    } catch (e: Exception) {
+        -1
+    }
 
     // what happens here is ->
     // if there no exception occurs in code inside the try block then last expression of try block will be returned as return value
@@ -169,30 +166,36 @@ fun returningFromTry() {
 
 }
 
- // what if we try to return from finally also.
+// what if we try to return from finally also.
 fun returningFromFinally() {
     val input = readLine() ?: return
 
-    val getValue: Int = try {input.toInt()}  catch(e :NumberFormatException) { -1} finally { 0 }
+    val getValue: Int = try {
+        input.toInt()
+    } catch (e: NumberFormatException) {
+        -1
+    } finally {
+        0
+    }
     // finally block does not effect the return value and in the above example last expression inside final block gets unused
 
 }
+
 
 // lets use try expression return value in the above age example
 fun getCorrectAgeTwo(): Int {
     val input = readLine() ?: return -1
     var age: Int = -1
 
-    val occurred: Boolean  = try {
+    val occurred: Boolean = try {
         input.toInt()
         false
-    }
-    catch(e: NumberFormatException) {
+    } catch (e: NumberFormatException) {
         println("Only numbers are allowed ")
         true
     }
 
-    if (!occurred){
+    if (!occurred) {
         val ageForCheck = input.toInt()
         if (ageForCheck in 18..60) age = ageForCheck
     }
@@ -201,10 +204,60 @@ fun getCorrectAgeTwo(): Int {
 }
 
 
+// throw is an exception so we can use it with elvis operator
+fun enterAndPrintAge(){
+    val input  = readLine()
+    val age = input?.toIntOrNull() ?: throw NumberFormatException("Please Enter a number only!")
+    // Type of throw expression is the special type Nothing
+    // the type has no value and used to mark the code location that can never be reached
 
-fun main() {
+    println(age) // won't execute if the exception occurs
+}
 
 
+// use Nothing as return type in functions
+// lets use Nothing as returned type of function
+fun wrongAge(): Nothing{
+    throw NumberFormatException("Enter numbers only") // type of nothing means line of code written bellow it is unreachable
+
+}
+
+// if the above function gets called then code bellow that function wont execute
+// for example
+fun testNothingType() {
+    wrongAge() // calling it directly just for illustration
+    println("i wont execute !")
+    println("i wont execute !")
+
+    // so because wrongAge() function has nothing type means we are marking that rest of the code below it is unreachable.
+    /**
+     * In simple words rest of the code wont execute after we use something that returns Nothing
+     * or when we call Something that has type or returns Nothing type, the compiler will know execution doesn't go beyond the call.
+     */
+}
+
+fun enterAgeAndPrint(){
+    val input = readLine()?.toIntOrNull() ?: wrongAge()
+    println ("Your age is : $input ") // wont reach this code if in above line wrongAge() gets called.
+}
+
+// null type
+
+
+fun nullType(){
+    val test = null  // test has type of Nothing because there no way for compiler to determine its type
+
+    // thus we need to explicitly specify nullable variant of the type that we want
+    val testTwo: Int? = null
+
+    val myList = listOf(null) // myList has type of List<Nothing?> still because of the same reason above
+
+    // thus we need to explicitly specify nullable variant of the type that we want
+    val myListTwo: List<Int?> = listOf(null)
+
+}
+
+fun main(){
 
 
 }
