@@ -12,7 +12,9 @@ import kotlin.reflect.full.memberProperties
 
 /** class references */
 // getting reference to a kotlin class at runtime by using : class literal syntax
-class Air (val quality: Int = 10)
+class Air (val quality: Int = 10){
+    fun someMethod() { println("hey im a method !") }
+}
 
 fun aboutAirClass() {
     val airClass = Air::class // class literal syntax
@@ -39,11 +41,18 @@ fun createObjectOfClass(classRef: KClass<Air>): Air {
     // To do that class must have no arg constructor and if it do have args we need to provide default value to it
     // if we don't we will end up with an Exception
 }
+fun Air.test() {
+    println("test !")
+}
 
+fun memberRef(){
+    // we can also get reference to class members (property or method)
+    val propRef = Air::quality
+    val methodRef = Air::someMethod
+}
 
 
 fun main() {
-
     aboutAirClass()
 
 }
