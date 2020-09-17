@@ -60,8 +60,4 @@ fun main() {
     referenceStoreTestOut(containerTwo) // Container<Base> can easily be super type of Container<DerivedChild> which is subtype of Container<Derived>
 
 
-
-
 }
-
-

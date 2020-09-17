@@ -59,11 +59,10 @@ fun smartCastWithWhen(obj: Any) {
 
 fun smartCastWithWhile(obj: Any) { } // todo
 
-fun main() {
-
+fun main(){
     // passing instance of Any
-    val testObj  = Any()
-    isAndIsNot(testObj)
+    // val testObj  = Any()
+    //isAndIsNot(testObj)
 
     // passing instance of string
     val testString  = "Im a String.."
@@ -78,5 +77,4 @@ fun main() {
     smartCastWithWhen('k') // passing Char
     smartCastWithWhen("Koltlin") // passing String
     smartCastWithWhen(32.0) // passing Double
-
 }
