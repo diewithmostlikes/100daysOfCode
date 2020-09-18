@@ -1,3 +1,9 @@
+import java.lang.reflect.Field
+import java.lang.reflect.Method
+import kotlin.reflect.KProperty0
+import kotlin.reflect.jvm.javaField
+import kotlin.reflect.jvm.javaGetter
+
 /** references of function, properties and constructor can also be called or used as instance of function type */
 // getting function reference and calling them
 
@@ -58,16 +64,80 @@ fun extensionRef() {
 
 }
 
-fun main() {
+/**property reference*/
+val name  = "kotlin"
+var number = 10
+fun propRef() {
+   val propRef: KProperty0<String> = ::name // returns subtype of KProperty<T>
 
+    // get property value
+    println(::name.get())
+
+    // get name of property.
+    println(::name.name)
+
+
+    // for mutable properties subtype of KProperty<T> has setMethod
+    ::number.set(100)
+    println(number)
+
+
+    // can be used where a function with single generic parameter is expected
+    val coolList = listOf("this", "is", "cool")
+    val lengths =  coolList.map(String::length)
+    println(lengths)
+
+    // access property -> member of class
+    val propRefTwo = MediaPlayer::trackName
+    println(propRefTwo.get(MediaPlayer())) // need to pass the receiver object or object of referenced property class
+
+    // extension function or property
+    val player: MediaPlayer = MediaPlayer()
+    println(player::trackNameWithNumber.invoke())
+    // or
+    println(MediaPlayer::trackNameWithNumber.invoke(player))
+
+
+}
+
+/**Constructor reference.*/
+// constructor can also be referenced just like methods and properties
+
+fun constructorReference() {
+    val constructor = ::MediaPlayer
+    val player = getMyPlayer(constructor )
+    player.play()
+}
+
+fun getMyPlayer (constructor: () -> MediaPlayer): MediaPlayer {
+    return constructor()
+}
+
+/** interoperability with java reflection */
+class Tes (val test: Int)
+
+fun ref() {
+    val prop: Field? = Tes::test.javaField
+    val method: Method? = Tes::test.javaGetter
+    val javaClass = Tes::test.javaClass
+
+    // or in java we can use .kotlin to get kotlin class
+    val kotlinPropRef = Tes::test.javaClass.kotlin
+
+}
+
+
+fun main() {
     functionReference()
     extensionRef()
+    propRef()
 
 }
 
 // for simulating examples..
 fun printSomething(number: Int) { println(number) }
 fun printSomething(string: String) { println(string) }
+fun MediaPlayer.trackNameWithNumber() = trackName + "1"
 fun <T> giveMeAFunctionThatTakesAndReturnHaha(arguments: T, function: (T) -> Unit ){  function(arguments) } // sound scary !
 class MediaPlayer() {
     val trackName: String = "none"
