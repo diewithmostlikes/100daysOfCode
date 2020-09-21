@@ -1,4 +1,4 @@
-package new_start
+package basics
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
