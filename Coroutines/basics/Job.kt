@@ -14,6 +14,8 @@ private lateinit var job: Job
 // passing job  to context so we can cancel main coroutine and all its children using that job instance !
 fun main() = runBlocking<Unit>() { // blocking main thread // Main Coroutine
 
+    // Note every coroutine builder adds an instance of CoroutineScope to the  scope of its code block
+
      job = doSomeThing() // getting job
 
     handleCancelException(job) // adding exception handler to job which is thrown when we cancel job
@@ -77,11 +79,13 @@ suspend fun waitForJob() {
 
     job.join() // wait for the GlobalScope coroutine to get completed
     // well if we need to join or end or complete runBlocking when all its children gets completed..
-    // then i see no purpose of launching a coroutine with global scope
+    // then i see no purpose of launching a coroutine with GlobalScope
     // we can just do it with the launch { } coroutine builder
     // but that's just for example here !
 
-    // now our code of the main coroutine is not tied to duration of the background job !
+    // now our code of the main coroutine is not tied to duration of the background job but its waiting for it to complete.
+
+    // also having to keep reference manually to all the launched coroutine and join them is error prone.
 }
 
 // just for example
