@@ -9,14 +9,16 @@ import kotlinx.coroutines.*
  * and has states like active, canceled, completed  etc and can be started and completed !'
  * */
 
-val job = Job()
+private lateinit var job: Job
 
 // passing job  to context so we can cancel main coroutine and all its children using that job instance !
-fun main() = runBlocking<Unit>(job) { // blocking main thread // Main Coroutine
+fun main() = runBlocking<Unit>() { // blocking main thread // Main Coroutine
+
+     job = doSomeThing() // getting job
 
     handleCancelException(job) // adding exception handler to job which is thrown when we cancel job
 
-    doSomeThing().join() // to launch coroutines in background thread and .join() to wait for the parent coroutine to  done working
+    job.join() // to launch coroutines in background thread and .join() to wait for the parent coroutine to  done working
 
 
 }
