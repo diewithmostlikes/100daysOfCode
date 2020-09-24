@@ -6,7 +6,7 @@ import kotlinx.coroutines.*
  */
 
 // so what is suspend function
-// basically the function that is only callable from  inside the coroutines and other suspend function or can call other suspend function inside them.
+// basically the function that is only callable from  inside the coroutines and other suspend function or can call other suspend function inside it.
 
 /** what makes them different then normal function*/
 
