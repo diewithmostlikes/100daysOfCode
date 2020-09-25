@@ -1,10 +1,6 @@
 package basics;
 
-import java.net.SocketOption;
-
 class MyDemonThread extends Thread  {
-
-
     @Override
     public void run() {
 
@@ -17,7 +13,6 @@ class MyDemonThread extends Thread  {
     }
 
 }
-
 
 public class DemonThreadInJava {
     public static void main(String[] args) {
