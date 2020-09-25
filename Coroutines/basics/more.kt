@@ -17,6 +17,11 @@ suspend fun soMuchCoroutines() = coroutineScope {
 }
 
 // Global coroutine are like daemon threads
+// daemon threads are low priority threads that run in the background
+// they don't prevent jvm from exiting no matter the daemon is running at that point.
+// when all the non-demon threads done executing jvm terminates it self without even caring about demon threads
+// if jvm find out a demon thread running it terminates it and shut it self down.
+
 fun main () = runBlocking {
 
     val job = GlobalScope.launch {
@@ -27,5 +32,6 @@ fun main () = runBlocking {
     }
 
     delay(2000) // active coroutine that are launched in GlobalScope do ot keep jvm alive,  they like daemon Thread
+
 }
 
