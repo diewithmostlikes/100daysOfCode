@@ -39,9 +39,7 @@ suspend fun mySuspendFunction(): String {
     delay(3_000L) // can call other suspend function from inside other function.
     return "Done"
 }
-
-fun main() = runBlocking<Unit> {
+fun main() = runBlocking {
     val job  = explainSuspendFun()
-
     job.join() // to keep the jvm alive Note we are working with GlobalScope which has scope of whole application.
 }
