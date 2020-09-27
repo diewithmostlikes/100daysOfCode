@@ -32,6 +32,45 @@ suspend fun defaultAndLazy() = coroutineScope {
 
 }
 
+/** a. CoroutineStart.ATOMIC (not completed !) */
+// todo complete.
+suspend fun atomicLaunch() = coroutineScope {
+    /* CoroutineStart.ATOMIC */
+    // its like CoroutineStart.DEFAULT, coroutine with this start launched immediately but coroutine is not cancelable
+    val job = launch(start = CoroutineStart.ATOMIC) {
+        delay(3000L)
+        println("hahhaha you can't cancel me :-D")
+    }
+    job.cancel()
+    println(job.isCancelled)
+    GlobalScope.launch{}
+
+}
+
+/** b.CoroutineStart.UNDISPATCHED (not completed !)*/
+// todo complete
+suspend fun unDispatched() = coroutineScope {
+    /* CoroutineStart.UNDISPATCHED */
+    // Coroutine will be launched immediately until its first suspension point.
+    launch(start = CoroutineStart.UNDISPATCHED) {
+        println("line one !")
+        println("line two !")
+
+        suspendFunction() // suspension point
+
+        println("line three !")
+        println("line four !")
+
+    }
+
+}
+
+suspend fun suspendFunction() {
+    println("Suspend Function is suspend point for the coroutine ! ")
+    delay(5000)
+}
+
+
 fun main() = runBlocking<Unit> {
 
     // lock runBlocking also provides CoroutineScope to its block (by simply making block (parameter that take function and makes it extension function of CoroutineScope)
@@ -40,6 +79,7 @@ fun main() = runBlocking<Unit> {
     launch {/*..*/}
     // or we can say
     this.launch{/*..*/} // "this" here is the reference to the CoroutineScope Class and launch is extension function of it.
-    defaultAndLazy()
+    // defaultAndLazy()
+    unDispatched()
 
 }
