@@ -11,23 +11,30 @@ import kotlinx.coroutines.*
  * and we can use await to wait for the result of the coroutine (basically suspending the coroutine using await() until the result is ready */
 
 suspend fun loginAs(username: String, password: String) = coroutineScope<Unit> {
-    launch {
+    val authCoroutineJob = launch {
         // note async is a normal function like launch which don't suspend the coroutine on which they are being called..
         // we use .join() and await() on launch and async respectively to  suspend the coroutine in which they are being called .
         val user: User? = async { getUser(username, password) }. await() // suspending the the coroutine until the result is ready
-        // note when we use await on async it will return u the actual instance that you returning from
+        // note when we use await on async it will return you the actual instance that you returning from block of async instead of Deferred instance.
 
         // below coroutines will launched when above coroutine returns the result or Deferred Object
         launch {
             if(user != null) {
-                println("Hello, ${user.name} welcome back ! ")
+                println("\rHello, ${user.name} welcome back ! ")
                 println("your are ${user.age} years old !")
             }else {
                 println("Incorrect username or password ! ")
             }
         }
     }
-    launch { println("Other work !..") }
+    launch {
+        print("Loading")
+       while(!authCoroutineJob.isCompleted) {
+           print(".")
+           delay(500)
+       }
+
+    }
 
 }
 
