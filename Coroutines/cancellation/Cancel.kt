@@ -7,7 +7,7 @@ import kotlinx.coroutines.*
 // and yeah coroutines running in the background has no where to return to because we have closed or moved from our activity or fragment or from a page.
 
 
-// So in that case we can cancel them all out
+// So in that case we can cancel it/them out
 // lunch returns Job instance that can be used to cancel the coroutine who's job instance it was
 
 fun main() = runBlocking {
@@ -27,5 +27,4 @@ fun main() = runBlocking {
 
     // we can use job extension function cancelAndJoin() to cancel and join .
     println("code cooperated to be canceled !")
-
 }
