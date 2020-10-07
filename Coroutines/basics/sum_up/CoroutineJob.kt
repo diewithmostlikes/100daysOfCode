@@ -56,18 +56,21 @@ suspend fun jobLifecycle () = coroutineScope {
     }
 
     delay(1000L)
-    childJob.cancel() // when we cancel job( Job.cancel() ) or some failure occurs in coroutine will move the jon in cancelling state.
+    childJob.cancelAndJoin() // when we cancel job( Job.cancel() ) or some failure occurs in coroutine will move the jon in cancelling state.
     // where isActive becomes false and isCancelled becomes true and then job moves to cancelled state where is completed becomes true.
-    delay(1L)
-    // well it takes Job a little time to move from cancelling to canceled state.
-    // well its a very short time idk this situation is only occurring in my pc or it really takes some time to move from cancelling  to cancelled state
-    // thus i delayed it for 1 millis  so the bellow isCompleted (childJob.isCompleted returns correct value)
+
+
+    // now i used cancel and join because before i was only using cancel which is not a suspend function and the controller was immediately
+    // executed the code below that's why i was having wrong value of the isCompleted because it takes some time for coroutine to move from
+    // cancelling state to cancelled and my below code(for isCompleted) depends on the fully execution of cancel
+    // that's why i need to suspend the coroutine until the cancel is done
+    // we can do this by calling cancel() and then calling join() or we can simply use cancelAndJoin()
+    // to cancel and suspend the coroutine until it gets fully canceled
 
     println("""
         isActive: ${childJob.isActive}
         isCanceled: ${childJob.isCancelled}
         isCompleted: ${childJob.isCompleted}
     """.trimIndent())
-
 
 }
