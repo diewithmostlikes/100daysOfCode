@@ -45,8 +45,7 @@ val scopeTwo = CoroutineScope(SupervisorJob())
 fun exceptionTestTwo() {
     scopeTwo.launch {
         println("ha ha ha ha ha im gonna throw exception !")
-        throw Exception("thrown by evil coroutine !")
-
+        throw Exception("thrown by evil coroutine !") // the child coroutine has to handle it.
     }
 
     // these coroutine are going to execute no matter the above coroutine has thrown an exception
@@ -60,6 +59,9 @@ fun exceptionTestTwo() {
         println("Coroutine three done !")
     }
 }
+
+// Note if we don't provide CoroutineExceptionHandler to the CoroutineContext or handle the Exception, it will reach to the Default threads exception  handler
+// then the exception is still be thrown and logged to console no matter you used a Supervisor job.
 
 fun main() = runBlocking <Unit>{
     println("with normal job !")
