@@ -45,3 +45,30 @@ fun main() {
     // so for Decomposition we need componentN() methods
 
 }
+
+// what if a data class holds another data class
+// lets check how equality works for data class in that case
+data class PersonWrapperDataClass(val person: Person)
+fun dataClassEqualityCheckTest() {
+    // sorry for using company names as person :-)
+    val personOne = Person("Kotlin", 10)
+    val personTwo = Person("Google", 100 )
+
+    // wrapping up !
+    // for true case
+    val wrappedPersonOne = PersonWrapperDataClass(personOne)  // name sounds scary !
+    val wrappedPersonTwo = PersonWrapperDataClass(personOne)
+
+    // for false case
+    val wrappedPersonThree = PersonWrapperDataClass(personTwo)
+
+    // Comparing data class with another data class when they both holding a data class whose contents are same in both !
+    println(wrappedPersonOne == wrappedPersonTwo) // true
+
+    // Comparing data class with another data class when they both are holding a data class whose contents are not same in both !
+    println(wrappedPersonOne == wrappedPersonThree) // false
+
+    // under the hood here we are checking for equality of two data classes by checking equality of there content
+    // since here content of our both data class is also a data class
+    // under the hood it is also checking for the equality of both data classes inside the both wrapper classes
+}
